@@ -20,7 +20,6 @@ exports.getOneSauce = (req, res, next) => {
 };
 
 exports.modifySauce = (req, res, next) => {
-    if (req.body.decodedToken.userId === sauce.userId) {
         const sauceObject = req.file ? {
             ...JSON.parse(req.body.sauce),
             imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
@@ -28,7 +27,6 @@ exports.modifySauce = (req, res, next) => {
         Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
             .then(() => res.status(200).json({ message: 'Sauce modifié !'}))
             .catch(error => res.status(400).json({ error }));
-    }
 };
 
 exports.deleteSauce = (req, res, next) => {
