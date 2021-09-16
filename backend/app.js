@@ -12,8 +12,10 @@ const app = express();
 
 app.use(helmet());
 
+require('dotenv').config();
+
 mongoose
-    .connect("mongodb+srv://Piiquante-DB_user:Piiquante-DataBase_1@piiquantedatabase.yalg0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    .connect(process.env.DB_CONNECT)
     .then(() => {
         console.log("Successfully connected to MongoDB Atlas!");
     })
