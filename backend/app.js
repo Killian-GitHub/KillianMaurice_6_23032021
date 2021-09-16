@@ -1,12 +1,16 @@
 const express = require("express");
+const helmet = require("helmet");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const path = require("path");
 
 const saucesRoutes = require("./routes/sauces");
 const userRoutes = require("./routes/user");
+const { use } = require("./routes/sauces");
 
 const app = express();
+
+app.use(helmet());
 
 mongoose
     .connect("mongodb+srv://Piiquante-DB_user:Piiquante-DataBase_1@piiquantedatabase.yalg0.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
